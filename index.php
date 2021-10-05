@@ -5,18 +5,16 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-$url = 'opt.wspitaly.com.ua/remains/Price%20WSP%20Italy.xls';
-$url = urldecode($url);
+$url = 'https://opt.wspitaly.com.ua/remains/Price%20WSP%20Italy.xls';
 
-set_time_limit(0);
-$file = file_get_contents('https://' . $url);
-file_put_contents('originalWspItaly.xlsx', $file);
+$fileNewCatalog = 'originalWspItaly.xls';
 
-//$inputFileName = 'Price WSP Italy (5).xls';
-//$inputFileName = 'originalWspItaly.xlsx';
-$inputFileName = 'https://' . $url;
+copy($url, $fileNewCatalog);
 
-$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+//$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($fileNewCatalog);
+
+
 $worksheet = $spreadsheet->getActiveSheet();
 
 $maxRow = $worksheet->getHighestRow();
