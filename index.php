@@ -7,7 +7,11 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $url = 'https://opt.wspitaly.com.ua/remains/Price%20WSP%20Italy.xls';
 
-$fileNewCatalog = 'originalWspItaly.xls';
+// путь локальный для файла
+//$fileNewCatalog = 'originalWspItaly.xls';
+
+// путь для файла на хостинге
+$fileNewCatalog = '/itwheels.com.ua/excel-import/originalWspItaly.xls';
 
 copy($url, $fileNewCatalog);
 
@@ -148,7 +152,14 @@ foreach ($manufacturerColumn as $cell => $value){
 
 // сохраняем измененные данные в новый файл excel
 $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xls($spreadsheet);
-$writer->save('newWspItaly.xls');
+
+// локальный путь для файла
+$newFileName = 'newWspItaly.xls';
+
+// путь к файлу для хостинга
+$newFileName = '/itwheels.com.ua/excel-import/newWspItaly.xls';
+
+$writer->save($newFileName);
 
 echo 'File is ready!';
 
